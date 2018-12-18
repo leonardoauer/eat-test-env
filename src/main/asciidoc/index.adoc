@@ -1,0 +1,105 @@
+= Text IQ - API
+@user.name@ <dev@textiq.com>
+v@project.version@.@buildNumber@
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 5
+:sectlinks:
+
+[introduction]
+= About
+
+ xxxxxxxxxxxxxxxxxxxxxxx
+
+
+== HTTP status codes
+
+Códigos de Status HTTP utilizados no Proxy:
+
+|===
+| Status code | Usage
+
+| `200 OK`
+| Requisição bem-sucedida
+
+| `400 Bad Request`
+| Código informado quando ocorrer um erro na validação de parâmetros
+
+| `500 Internal Server Error`
+| Código informado quando ocorrer um erro na execução dos serviços.
+|===
+
+////
+[[overview-headers]]
+== Headers
+
+Every response has the following header(s):
+
+include::{snippets}/headers-example/response-headers.adoc[]
+//// 
+////
+
+[[overview-errors]]
+== Errors
+
+Whenever an error response (status code >= 400) is returned, the body will contain a JSON object
+that describes the problem. The error object has the following structure:
+
+include::{snippets}/sup-ben-val-nenhum-parametro/response-fields.adoc[]
+
+For example, a request that attempts to delete on the greetings endpoint will produce a
+`405 Method Not Allowed` response:
+
+include::{snippets}/sup-ben-val-nenhum-parametro/http-response.adoc[]
+////
+
+
+== Return code
+
+|===
+| Code | Description
+
+| `2001`
+| Success message.
+
+| `4001`
+| Error message.
+
+|===
+
+[[endpoints]]
+== Endpoints
+
+:sectnums:
+=== Get All Items
+URI::
+	`/v1/items`
+Método Http::
+	`GET`
+
+*Parameters*
+
+include::{snippets}/send-sms-single-number-success/request-fields.adoc[]
+
+==== Valid Request
+
+*Requisição*
+
+include::{snippets}/send-sms-single-number-success/curl-request.adoc[]
+
+*Resposta*
+
+include::{snippets}/send-sms-single-number-success/http-response.adoc[]
+
+==== Invalid Request
+
+===== Número não informado
+*Requisição*
+
+include::{snippets}/send-sms-single-number-required/curl-request.adoc[]
+
+*Resposta*
+
+include::{snippets}/send-sms-single-number-required/http-response.adoc[]
